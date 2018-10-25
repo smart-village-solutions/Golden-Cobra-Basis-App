@@ -1,0 +1,48 @@
+{
+  "name": "golden-cobra-basis-app",
+  "version": "1.4.0",
+  "private": true,
+  "devDependencies": {
+    "@babel/core": "7.1.0",
+    "@babel/preset-react": "7.0.0",
+    "babel-jest": "23.4.2",
+    "eslint": "4.19.1",
+    "eslint-config-recommended": "2.0.0",
+    "eslint-plugin-react": "7.7.0",
+    "jest": "22.4.4",
+    "metro-react-native-babel-preset": "0.45.6",
+    "react-native-jest-mocks": "1.3.0",
+    "react-test-renderer": "16.5.0",
+    "redux-mock-store": "1.5.1"
+  },
+  "scripts": {
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "test": "jest",
+    "lint": "eslint --ext .js app/ tests/"
+  },
+  "jest": {
+    "preset": "react-native",
+    "transform": {
+      "^.+\\.js$": "./node_modules/react-native/jest/preprocessor.js"
+    }
+  },
+  "dependencies": {
+    "@redux-offline/redux-offline": "2.3.3",
+    "lodash": "4.17.11",
+    "prop-types": "15.6.2",
+    "react": "16.5.0",
+    "react-native": "0.57.2",
+    "react-native-camera": "1.3.1",
+    "react-native-camera-roll-picker": "1.2.3",
+    "react-native-console-time-polyfill": "0.0.6",
+    "react-native-htmlview": "0.12.1",
+    "react-native-vector-icons": "4.6.0",
+    "react-navigation": "1.0.3",
+    "react-redux": "5.0.7",
+    "redux": "4.0.1",
+    "redux-logger": "3.0.6",
+    "redux-thunk": "2.3.0"
+  }
+}
