@@ -1,5 +1,8 @@
 # Golden Cobra Basis App
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/04ad898be16eea382558/maintainability)](https://codeclimate.com/github/ikuseiGmbH/Golden-Cobra-Basis-App/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/04ad898be16eea382558/test_coverage)](https://codeclimate.com/github/ikuseiGmbH/Golden-Cobra-Basis-App/test_coverage)
+
 Golden Cobra Basis App is created with React Native for iOS and Android.
 
 ## Golden Cobra
