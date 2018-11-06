@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native';
 
-import colors from '../colors';
+import Colors from '../colors';
 
 export default StyleSheet.create({
   flex: {
-    backgroundColor: colors.lighterGray,
+    backgroundColor: Colors.lighterGray,
     flex: 1
   },
   centered: {
@@ -16,6 +16,6 @@ export default StyleSheet.create({
     padding: 15
   },
   list: {
-    backgroundColor: colors.lighterGray
+    backgroundColor: Colors.lighterGray
   }
 });

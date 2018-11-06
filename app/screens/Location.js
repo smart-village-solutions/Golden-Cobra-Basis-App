@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 
-import Styles from '../config/styles';
+import { texts } from '../config';
+import { Container, StyledText } from '../components';
 
 class Location extends React.Component {
   constructor(props) {
@@ -29,11 +30,22 @@ class Location extends React.Component {
 
   render() {
     return (
-      <View style={[Styles.containers.flex, Styles.containers.centered]}>
-        <Text style={Styles.texts.text}>Latitude: {this.state.latitude}</Text>
-        <Text style={Styles.texts.text}>Longitude: {this.state.longitude}</Text>
-        {this.state.error ? <Text>Fehler: {this.state.error}</Text> : null}
-      </View>
+      <Container centered>
+        <StyledText>
+          {texts.de.others.location.latitude}
+          {this.state.latitude}
+        </StyledText>
+        <StyledText>
+          {texts.de.others.location.longitude}
+          {this.state.longitude}
+        </StyledText>
+        {this.state.error ? (
+          <Text>
+            {texts.de.errors.general.detailedError}
+            {this.state.error}
+          </Text>
+        ) : null}
+      </Container>
     );
   }
 }

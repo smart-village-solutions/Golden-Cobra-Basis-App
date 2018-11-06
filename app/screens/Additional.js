@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FlatList, View } from 'react-native';
 
-import MoreTeaser from '../components/MoreTeaser';
-import Styles from '../config/styles';
+import { AdditionalTeaser } from '../components';
+import { ArticleList, IndexItemSeparator } from '../components';
 
-/* eslint-disable one-var */
+import { texts } from '../config';
 
-class More extends React.Component {
+class Additional extends React.Component {
   static propTypes = {
     navigation: PropTypes.object
   };
@@ -19,29 +18,25 @@ class More extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      moreData: []
+      additionalData: []
     };
     this.renderItem = this.renderItem.bind(this);
   }
 
   componentWillMount() {
-    this.setState({ moreData: this.moreData() });
+    this.setState({ additionalData: this.additionalData() });
   }
 
   keyExtractor = (item) => `key-${item.id}`;
 
-  indexItemSeparator = () => (
-    <View style={Styles.separators.indexItemSeparator} />
-  );
-
-  moreData = () => {
+  additionalData = () => {
     const testIcons = [
       'navigate',
       'map',
       'pie',
       'pint',
       'pizza',
-      'plane',
+      'airplane',
       'paper-plane',
       'person',
       'options',
@@ -61,15 +56,15 @@ class More extends React.Component {
     const dataList = [];
     dataList[0] = {
       id: 0,
-      iconName: 'ios-pin-outline',
-      title: 'Standort'
+      iconName: 'ios-pin',
+      title: `${texts.de.others.functionsList.location}`
     };
 
     for (let i = 1; i < 20; i++) {
       dataList[i] = {
         id: i,
-        iconName: `ios-${testIcons[i]}-outline`,
-        title: `Mehr ${i}`
+        iconName: `ios-${testIcons[i]}`,
+        title: `${texts.de.others.functionsList.alertMessage}${i}`
       };
     }
 
@@ -80,7 +75,7 @@ class More extends React.Component {
     const { navigation } = this.props;
 
     return (
-      <MoreTeaser
+      <AdditionalTeaser
         item={item}
         onPress={() => {
           if (item.id === 0) {
@@ -91,21 +86,20 @@ class More extends React.Component {
         }}
       />
     );
-  }
+  };
 
   render() {
-    const { moreData } = this.state;
+    const { additionalData } = this.state;
 
     return (
-      <FlatList
-        data={moreData}
+      <ArticleList
+        data={additionalData}
         renderItem={this.renderItem}
-        ItemSeparatorComponent={this.indexItemSeparator}
+        ItemSeparatorComponent={IndexItemSeparator}
         keyExtractor={this.keyExtractor}
-        style={Styles.containers.list}
       />
     );
   }
 }
 
-export default More;
+export default Additional;

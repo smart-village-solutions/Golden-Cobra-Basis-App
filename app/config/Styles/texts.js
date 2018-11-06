@@ -1,14 +1,14 @@
 import { StyleSheet } from 'react-native';
 
-import colors from '../colors';
+import Colors from '../colors';
 
 export default StyleSheet.create({
   text: {
-    color: colors.black,
+    color: Colors.black,
     fontWeight: '400'
   },
   link: {
-    color: colors.green,
+    color: Colors.green,
     fontWeight: '400'
   }
 });

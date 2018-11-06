@@ -1,5 +1,3 @@
-/* eslint-disable one-var */
-
 import { SET_ARTICLES } from '../actions/constants/actionTypes';
 
 const initialState = {

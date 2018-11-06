@@ -1,30 +1,28 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import IOSIcon from 'react-native-vector-icons/Ionicons';
 
-import Camera from '../scenes/Camera';
-import Images from '../scenes/Images';
-import Styles from '../config/styles';
-import colors from '../config/colors';
-
-/* eslint-disable one-var */
+import { Camera, Images } from '../screens';
+import { colors, styles, texts } from '../config';
+import { ElementPadding } from '../components';
 
 const navigationOptions = {
   gesturesEnabled: true,
-  headerStyle: { paddingRight: 10, paddingLeft: 10 },
-  headerTitleStyle: Styles.texts.text
+  headerTitleStyle: styles.texts.text
 };
 
-const CameraStack = StackNavigator({
+const CameraStack = createStackNavigator({
   Camera1: {
     screen: Camera,
     navigationOptions: ({ navigation }) => ({
       ...navigationOptions,
-      headerTitle: 'Kamera',
+      headerTitle: texts.de.infos.cameraStack.cameraTitle,
       headerRight: (
         <TouchableOpacity onPress={() => navigation.navigate('Camera2')}>
-          <IOSIcon name="ios-images-outline" size={26} color={colors.black} />
+          <ElementPadding horizontal={8}>
+            <IOSIcon name="ios-images" size={26} color={colors.black} />
+          </ElementPadding>
         </TouchableOpacity>
       )
     })
@@ -33,7 +31,7 @@ const CameraStack = StackNavigator({
     screen: Images,
     navigationOptions: {
       ...navigationOptions,
-      headerTitle: 'Bilder'
+      headerTitle: texts.de.infos.cameraStack.imagesTitle
     }
   }
 });

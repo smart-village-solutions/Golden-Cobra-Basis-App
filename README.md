@@ -34,10 +34,12 @@ This represents an added value compared to the implementation only as a website.
 
 * React Native (0.57.2): https://github.com/facebook/react-native
 * React (16.5.0): https://github.com/facebook/react
-* React Navigation (1.0.3): https://github.com/react-navigation/react-navigation
+* React Navigation (2.18.2): https://github.com/react-navigation/react-navigation
 * React Native Camera (1.3.1): https://github.com/react-native-community/react-native-camera
 * React Native Camera Roll Picker (1.2.3): https://github.com/jeanpan/react-native-camera-roll-picker
-* React Native HTMLView (0.12.1): https://github.com/jsdf/react-native-htmlview
+* React Native Vector Icons (6.0.2): https://github.com/oblador/react-native-vector-icons
+* React Native HTMLView (0.13.0): https://github.com/jsdf/react-native-htmlview
+* styled-components (4.0.2): https://github.com/styled-components/styled-components
 * Redux (4.0.1): https://github.com/reactjs/redux
 * Redux Offline (2.3.3): https://github.com/redux-offline/redux-offline
 * Jest (22.4.4): https://github.com/facebook/jest
@@ -48,4 +50,4 @@ Everyone is welcome to participate in this project.
 We expect users to follow our [Code of Conduct](CODE_OF_CONDUCT.md) while submitting code or comments.
 
 ---
-###### Version: 1.4.0
+###### Version: 1.5.0

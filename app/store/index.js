@@ -1,5 +1,3 @@
-/* eslint-disable one-var */
-
 /**
  * Working with the store
  *
@@ -108,7 +106,10 @@ const store = createStore(
     window.__REDUX_DEVTOOLS_EXTENSION__ &&
     window.__REDUX_DEVTOOLS_EXTENSION__(),
 
-  compose(applyMiddleware(...middleware), enhanceStore)
+  compose(
+    applyMiddleware(...middleware),
+    enhanceStore
+  )
 );
 
 export default store;

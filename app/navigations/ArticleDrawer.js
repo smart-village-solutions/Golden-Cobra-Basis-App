@@ -1,9 +1,8 @@
-import { DrawerNavigator } from 'react-navigation';
+import { createDrawerNavigator } from 'react-navigation';
 
+import { colors } from '../config';
 import initStack from './ArticleStack';
-import colors from '../config/colors';
-
-/* eslint-disable one-var */
+import CustomDrawerItems from './CustomDrawerItems';
 
 const navigationOptions = {
   drawerLockMode: 'locked-closed'
@@ -26,18 +25,13 @@ const DrawerNavigatorConfig = {
   }
 };
 
-const initDrawer = (navigationEntries, articles, refreshAction) => {
+const initDrawer = (navigationEntries, refreshAction) => {
   const RouteConfigs = {};
+  const Stack = initStack(refreshAction);
 
   if (navigationEntries) {
     navigationEntries.forEach((item) => {
-      // TODO:
-      // cannot make the drawer navigate the same routes as the inner stack.
-      // so currently every drawer navigation item has the same whole stack.
-      // HACK: pass every stack the current artice_id to make it the initialRoute
-      const Stack = initStack(item.article_id, articles, refreshAction);
-
-      RouteConfigs[`Navigation${item.id}`] = {
+      RouteConfigs[`Drawer${item.id}-${item.article_id}`] = {
         screen: Stack,
         navigationOptions: {
           ...navigationOptions,
@@ -46,13 +40,11 @@ const initDrawer = (navigationEntries, articles, refreshAction) => {
       };
     });
 
-    if (navigationEntries[0]) {
-      DrawerNavigatorConfig.initialRouteName = `Navigation${navigationEntries[0].id}`;
-      DrawerNavigatorConfig.drawerPosition = 'right';
-    }
+    DrawerNavigatorConfig.contentComponent = CustomDrawerItems;
+    DrawerNavigatorConfig.drawerPosition = 'right';
   }
 
-  return DrawerNavigator(RouteConfigs, DrawerNavigatorConfig);
+  return createDrawerNavigator(RouteConfigs, DrawerNavigatorConfig);
 };
 
 export default initDrawer;

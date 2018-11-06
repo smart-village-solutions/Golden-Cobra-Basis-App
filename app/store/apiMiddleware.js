@@ -1,5 +1,6 @@
 import { FETCH_ARTICLES } from '../actions/constants/actionTypes';
 import { setArticles } from '../actions/articles';
+import { urls } from '../config';
 
 // TODO: add errorCallback
 function fetchData(url, callback) {
@@ -12,7 +13,7 @@ function fetchData(url, callback) {
 const apiMiddleware = (store) => (next) => (action) => {
   if (action.type === FETCH_ARTICLES) {
     // TODO: dispatch fetch start with showing spinner
-    fetchData('https://demo.goldencobra.de/api/v3/articles.json?tags=mobileapp', (data) => {
+    fetchData(`${urls.server}${urls.fetchArticles}`, (data) => {
       store.dispatch(setArticles(data.articles));
       // TODO: dispatch hiding spinner
     });

@@ -1,5 +1,3 @@
-// /* eslint-disable one-var */
-
 // import { LOAD_NAVIGATION } from '../actions/navigation';
 
 // const initialState = {

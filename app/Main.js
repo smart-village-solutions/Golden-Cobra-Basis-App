@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { ActivityIndicator, Platform, StatusBar, Text, View } from 'react-native';
+import { ActivityIndicator, Platform, StatusBar } from 'react-native';
 import IOSIcon from 'react-native-vector-icons/Ionicons';
 
 import { fetchArticles } from './actions/articles';
 
 import initTab from './navigations/Tab';
-import Styles from './config/styles';
-import colors from './config/colors';
+import { colors, texts, urls } from './config';
+import { Container, ElementPadding, StyledText } from './components';
 
 class Main extends React.Component {
   state = {
@@ -25,8 +25,7 @@ class Main extends React.Component {
   fetchNavigation = () => {
     const endpoints = [
       {
-        url:
-          'https://demo.goldencobra.de/api/v2/navigation_menus.json?name=mobileapp&methods=article_id',
+        url: `${urls.server}${urls.fetchNavigation}`,
         name: 'navigationEntries'
       }
     ];
@@ -36,7 +35,7 @@ class Main extends React.Component {
         this.setState({ refreshing: false });
       }
     );
-  }
+  };
 
   fetchData = (url, name) => {
     return fetch(url)
@@ -54,60 +53,58 @@ class Main extends React.Component {
       .catch((error) => {
         this.setState({ error, refreshing: false });
       });
-  }
+  };
 
   loadNavigation = () => {
     this.setState({ refreshing: true });
     this.props.fetchArticles();
     this.fetchNavigation();
-  }
+  };
 
   render() {
     const { refreshing, error, navigationEntries } = this.state;
-    const { articles } = this.props;
     let Tab = null;
 
     if (refreshing) {
       return (
-        <View style={[Styles.containers.flex, Styles.containers.centered]}>
-          <View style={{ padding: 5 }}>
+        <Container centered>
+          <ElementPadding horizontal={5} vertical={5}>
             <ActivityIndicator />
-          </View>
-          <Text style={Styles.texts.text}>Wird geladen...</Text>
-        </View>
+          </ElementPadding>
+          <StyledText>{texts.de.infos.general.refreshing}</StyledText>
+        </Container>
       );
     }
 
     if (error) {
       return (
-        <View style={[Styles.containers.flex, Styles.containers.centered]}>
-          <View style={{ padding: 3 }}>
-            <IOSIcon name="ios-warning-outline" size={22} color={colors.red} />
-          </View>
-          <Text style={Styles.texts.text}>Fehler</Text>
-        </View>
+        <Container centered>
+          <ElementPadding horizontal={3} vertical={3}>
+            <IOSIcon name="ios-warning" size={22} color={colors.red} />
+          </ElementPadding>
+          <StyledText>{texts.de.infos.errors.general.simpleError}</StyledText>
+        </Container>
       );
     }
 
-    if (navigationEntries.length && articles.articles.length) {
-      Tab = initTab(navigationEntries, articles.articles, this.loadNavigation);
+    if (navigationEntries.length) {
+      Tab = initTab(navigationEntries, this.loadNavigation);
       return <Tab />;
     }
 
     return (
-      <View style={[Styles.containers.flex, Styles.containers.centered]}>
-        <View style={{ padding: 3 }}>
-          <IOSIcon name="ios-warning-outline" size={22} color={colors.red} />
-        </View>
-        <Text style={Styles.texts.text}>Keine Artikel vorhanden</Text>
-      </View>
+      <Container centered>
+        <ElementPadding horizontal={3} vertical={3}>
+          <IOSIcon name="ios-warning" size={22} color={colors.red} />
+        </ElementPadding>
+        <StyledText>{texts.de.infos.main.noArticle}</StyledText>
+      </Container>
     );
   }
 }
 
 Main.propTypes = {
-  fetchArticles: PropTypes.func.isRequired,
-  articles: PropTypes.object.isRequired
+  fetchArticles: PropTypes.func.isRequired
 };
 
 /**
@@ -124,9 +121,7 @@ Main.propTypes = {
  * https://medium.com/mofed/reduxs-mysterious-connect-function-526efe1122e4
  */
 
-const mapStateToProps = (state) => ({
-  articles: state.articles
-});
+const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = {
   fetchArticles

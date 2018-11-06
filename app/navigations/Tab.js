@@ -1,75 +1,85 @@
 import React from 'react';
-import { TabNavigator } from 'react-navigation';
-import IOSIcon from 'react-native-vector-icons/Ionicons';
+import { createBottomTabNavigator } from 'react-navigation';
 
+import { colors, texts } from '../config';
 import initDrawer from './ArticleDrawer';
 import CameraStack from './CameraStack';
 import NotificationsStack from './NotificationsStack';
-import MoreStack from './MoreStack';
-import colors from '../config/colors';
+import AdditionalStack from './AdditionalStack';
+import TabBarIcon from './TabBarIcon';
 
-/* eslint-disable one-var */
-
-const navigationOptions = {};
+const navigationOptions = ({ navigation }) => ({
+  /* eslint-disable react/display-name, react/prop-types */
+  tabBarIcon: ({ focused }) => {
+    const { routeName } = navigation.state;
+    return <TabBarIcon routeName={routeName} focused={focused} />;
+  }
+});
 
 const TabNavigatorConfig = {
-  tabBarPosition: 'bottom',
   tabBarOptions: {
-    scrollEnabled: true,
-    activeTintColor: colors.green
+    activeTintColor: colors.green,
+    inactiveTintColor: colors.green,
+    style: {
+      // backgroundColor: colors.lighterGray,
+      height: 70
+    },
+    labelStyle: {
+      fontSize: 12,
+      marginTop: -5,
+      marginBottom: 10
+    }
   }
 };
 
-const initTab = (navigationEntries, articles, refreshAction) => {
+const initTab = (navigationEntries, refreshAction) => {
   let RouteConfigs = {};
-  const Drawer = initDrawer(navigationEntries, articles, refreshAction);
+  const Drawer = initDrawer(navigationEntries, refreshAction);
 
   RouteConfigs = {
     Tab1: {
       screen: Drawer,
       navigationOptions: {
-        ...navigationOptions,
-        tabBarLabel: 'Artikel',
-        tabBarIcon: ({ tintColor }) => (
-          <IOSIcon style={{ width: 20 }} name="ios-paper-outline" size={22} color={tintColor} />
-        )
+        title: texts.de.others.tab.tab1
       }
     },
     Tab2: {
       screen: CameraStack,
       navigationOptions: {
-        ...navigationOptions,
-        tabBarLabel: 'Kamera',
-        tabBarIcon: ({ tintColor }) => (
-          <IOSIcon style={{ width: 23 }} name="ios-camera-outline" size={30} color={tintColor} />
-        )
+        title: texts.de.others.tab.tab2
       }
     },
     Tab3: {
       screen: NotificationsStack,
       navigationOptions: {
-        ...navigationOptions,
-        tabBarLabel: 'Benachrichtig...',
-        tabBarIcon: ({ tintColor }) => (
-          <IOSIcon style={{ width: 20 }} name="ios-flag-outline" size={26} color={tintColor} />
-        )
+        title: texts.de.others.tab.tab3
       }
     },
     Tab4: {
-      screen: MoreStack,
+      screen: AdditionalStack,
       navigationOptions: {
-        ...navigationOptions,
-        tabBarLabel: 'Mehr',
-        tabBarIcon: ({ tintColor }) => (
-          <IOSIcon style={{ width: 20 }} name="ios-more-outline" size={30} color={tintColor} />
-        )
+        title: texts.de.others.tab.tab4
       }
     }
   };
 
   TabNavigatorConfig.initialRouteName = 'Tab1';
+  TabNavigatorConfig.navigationOptions = navigationOptions;
+  TabNavigatorConfig.tabBarOptions = {
+    activeTintColor: colors.green,
+    inactiveTintColor: colors.black,
+    style: {
+      backgroundColor: colors.white,
+      height: 70
+    },
+    labelStyle: {
+      fontSize: 12,
+      marginTop: -5,
+      marginBottom: 10
+    }
+  };
 
-  return TabNavigator(RouteConfigs, TabNavigatorConfig);
+  return createBottomTabNavigator(RouteConfigs, TabNavigatorConfig);
 };
 
 export default initTab;

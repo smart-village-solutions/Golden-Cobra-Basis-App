@@ -1,5 +1,3 @@
-/* eslint-disable one-var */
-
 import { FETCH_ARTICLES, SET_ARTICLES } from './constants/actionTypes';
 
 export const fetchArticles = () => ({

@@ -1,5 +1,3 @@
-// /* eslint-disable one-var */
-
 // export const LOAD_NAVIGATION = 'LOAD_NAVIGATION';
 
 // const loadNavigation = (navigationEntries) => ({

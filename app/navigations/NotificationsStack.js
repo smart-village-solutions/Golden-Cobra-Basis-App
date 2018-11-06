@@ -1,15 +1,14 @@
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 
-import Notifications from '../scenes/Notifications';
-import Styles from '../config/styles';
+import { Notifications } from '../screens';
+import { styles, texts } from '../config';
 
-const NotificationsStack = StackNavigator({
+const NotificationsStack = createStackNavigator({
   Notifications1: {
     screen: Notifications,
     navigationOptions: {
-      headerTitle: 'Benachrichtigungen',
-      headerStyle: { paddingRight: 10, paddingLeft: 10 },
-      headerTitleStyle: Styles.texts.text
+      headerTitle: texts.de.others.notificationStack.headerTitle,
+      headerTitleStyle: styles.texts.text
     }
   }
 });

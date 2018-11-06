@@ -1,13 +1,13 @@
-import containers from './Styles/containers';
-import html from './Styles/html';
-import separators from './Styles/separators';
-import texts from './Styles/texts';
+import containers from './styles/containers';
+import html from './styles/html';
+import preview from './styles/preview';
+import texts from './styles/texts';
 
-const Styles = {
+const styles = {
   containers,
   html,
-  separators,
+  preview,
   texts
 };
 
-export default Styles;
+export default styles;

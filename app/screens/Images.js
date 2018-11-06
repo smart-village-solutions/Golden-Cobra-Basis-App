@@ -1,7 +1,7 @@
 import React from 'react';
 import CameraRollPicker from 'react-native-camera-roll-picker';
 
-import colors from '../config/colors';
+import { colors, texts } from '../config';
 
 class Images extends React.Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class Images extends React.Component {
         backgroundColor={colors.lighterGray}
         selected={this.state.selected}
         callback={this.getSelectedImages}
-        emptyText="Keine Bilder"
+        emptyText={texts.de.infos.images.emptyText}
       />
     );
   }
